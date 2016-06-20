@@ -59,8 +59,8 @@ class Gamestate(object):
             return True
 
     @staticmethod
-    # checks if there are any possible moves left
-    def is_end_state(game_state):
+    def no_more_moves(game_state):
+        """Checks if there are any possible moves left"""
         rows, cols = len(game_state), len(game_state[0])
         for row in range(rows):
             for col in range(cols):

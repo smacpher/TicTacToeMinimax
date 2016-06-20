@@ -13,10 +13,8 @@ class Play(object):
 
     def minimax(self, state, depth, max_player):
         """minimax algo that outputs next state with best score"""
-        if Gamestate.check_win(state, max_player) or depth == 0 or Gamestate.is_end_state(state):
-            score = Gamestate.get_score(state, not max_player)  # get score for previous player
-            print('SCORE: %s' % score)
-            print(state)
+        if Gamestate.check_win(state, max_player) or depth == 0 or Gamestate.no_more_moves(state):
+            score = Gamestate.get_score(state, max_player)
             return score
         else:
             if max_player:  # AI's turn

@@ -13,7 +13,7 @@ def main():
     game = Gamestate(SIZE)
     logger.info(get_pretty_game_state(game.state))
 
-    while (not Gamestate.is_end_state(game.state) and not Gamestate.check_win(game.state, True) and
+    while (not Gamestate.no_more_moves(game.state) and not Gamestate.check_win(game.state, True) and
            not Gamestate.check_win(game.state, False)):
 
         AI = Play()
@@ -22,7 +22,7 @@ def main():
 
         game.make_move(state)
 
-        if Gamestate.is_end_state(game.state) or Gamestate.check_win(game.state, True):
+        if Gamestate.no_more_moves(game.state) or Gamestate.check_win(game.state, True):
             break
 
         logger.info(get_pretty_game_state(game.state))
@@ -50,7 +50,7 @@ def main():
 
         logger.info(get_pretty_game_state(game.state))
 
-        if Gamestate.is_end_state(game.state) or Gamestate.check_win(game.state, False):
+        if Gamestate.no_more_moves(game.state) or Gamestate.check_win(game.state, False):
             break
 
 if __name__ == '__main__':
