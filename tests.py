@@ -27,6 +27,12 @@ def test_check_win():
              [None, None, 'X'],
              [None, 'O', 'X']]
     assert (Gamestate.check_win(state, True) == True)
+
+    state = [['X', 'O', None],
+             ['X', 'O', None],
+             ['X', 'O', 'X']]
+    assert (Gamestate.check_win(state, True) == True)
+
     logger.debug('Passed')
 
 
@@ -77,7 +83,6 @@ def test_get_score():
     assert (Gamestate.get_score(state, False) == 10)
 
     logger.debug('Passed')
-
 
 
 def test_all():

@@ -10,6 +10,7 @@ def get_player(max_player):
     else:
         return min_player_sym
 
+
 def get_logger(name, *levels):
     for level in levels:
         logging.basicConfig(level=level)
