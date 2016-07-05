@@ -8,9 +8,10 @@ from utils import min_player_sym
 
 class Gamestate(object):
     """Represents a single game"""
-    def __init__(self, game_size, state=None):
+    def __init__(self, game_size, state=None, player=True):
         self.game_size = game_size
         self.state = state or self.create_new_game()
+        self.player = None
         self.logger = get_logger(__name__, logging.INFO)
         
     def create_new_game(self):

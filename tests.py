@@ -3,6 +3,8 @@ import logging
 from Gamestate import Gamestate
 from utils import get_logger
 
+from minimax import check_win
+
 logger = get_logger('Tests', logging.DEBUG)
 
 
@@ -35,6 +37,37 @@ def test_check_win():
 
     logger.debug('Passed')
 
+def test_check_win_2():
+    logger.debug('Testing check_win() from minimax.py')
+    state = [['X', None, None],
+             ['O', 'X', None],
+             [None, 'O', 'X']]
+
+    assert (check_win(state, 'X') == True)
+
+    state = [[None, 'X', 'O'],
+             [None, 'X', None],
+             [None, 'O', 'X']]
+    assert (check_win(state, 'X') == False)
+
+    state = [['X', 'O', None],
+             [None, 'X', None],
+             [None, 'O', 'X']]
+    assert (check_win(state, 'O') == False)
+
+    state = [['O', None, 'X'],
+             [None, None, 'X'],
+             [None, 'O', 'X']]
+    assert (check_win(state, 'X') == True)
+
+    state = [['X', 'O', None],
+             ['X', 'O', None],
+             ['X', 'O', 'X']]
+    assert (check_win(state, 'X') == True)
+
+    assert (check_win(state, 'O') == True)
+
+    logger.debug('Passed')
 
 def test_is_end_state():
     logger.debug('Testing is_end_state()')
@@ -89,7 +122,7 @@ def test_all():
     test_check_win()
     test_is_end_state()
     test_get_score()
-
+    test_check_win_2()
 
 if __name__ == '__main__':
     test_all()

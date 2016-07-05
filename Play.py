@@ -48,4 +48,3 @@ class Play(object):
                     print(get_pretty_game_state(best_child_state))
                 return best_value, best_child_state
 
-
