@@ -1,14 +1,8 @@
-import logging
-
-from utils import get_logger
-
-
 class Game(object):
     """Represents a single game"""
     def __init__(self, game_size):
         self.game_size = game_size
         self._state = None
-        self.logger = get_logger(__name__, logging.INFO)
 
     @property
     def state(self):

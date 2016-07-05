@@ -1,6 +1,7 @@
 import copy
 import logging
 
+from configs import LOGGING_LEVELS
 from configs import MAX_PLAYER_SYM
 from configs import MIN_PLAYER_SYM
 
@@ -13,11 +14,11 @@ def get_player(max_player):
         return MIN_PLAYER_SYM
 
 
-def get_logger(name, *levels):
+def get_logger(name):
     """Gets a logger for the module.  Pass in __name__
     for current module.
     """
-    for level in levels:
+    for level in LOGGING_LEVELS:
         logging.basicConfig(level=level)
     return logging.getLogger(name)
 
@@ -51,7 +52,6 @@ def is_valid_move(state, move):
     if (row >= rows or row < 0 or
         col >= cols or col < 0 or
         state[row][col] is not None):
-
         return False
     else:
         return True

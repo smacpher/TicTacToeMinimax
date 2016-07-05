@@ -1,6 +1,3 @@
-import logging
-
-from utils import get_logger
 from utils import get_player
 from utils import get_possible_states
 from utils import get_score
@@ -12,7 +9,6 @@ class AI(object):
     """The AI player object."""
     def __init__(self):
         self.symbol = MAX_PLAYER_SYM
-        self.logger = get_logger(__name__, logging.INFO)
 
     def get_best_state(self, state, max_player, depth):
         """Serves as a wrapper for the core minimax algorithm.  The best move --
@@ -26,7 +22,7 @@ class AI(object):
                 score = get_score(state, not max_player)  # get_score with previous player
                 return score
             else:
-                states = []  # TODO (smacpher): change this to moves; implement a state_to_move function
+                states = []
                 scores = []
                 # populate moves and scores
                 player = get_player(max_player)

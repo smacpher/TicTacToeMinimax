@@ -5,7 +5,7 @@ from utils import get_logger
 from utils import get_score
 from utils import no_more_moves
 
-logger = get_logger('Tests', logging.DEBUG)
+logger = get_logger('Tests')
 
 
 def test_check_win():
