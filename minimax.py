@@ -14,6 +14,9 @@ def no_more_moves(game_state):
 
 
 def is_end_state(game_state):
+    """Checks if the given state is an end state.  An end state
+    is defined as having 1) a winner or 2) no more available moves.
+    """
     if no_more_moves(game_state) or check_win(game_state, 'X') or check_win(game_state, 'O'):  # TODO: optimize me
         return True
     else:
@@ -113,10 +116,9 @@ def get_player(max_player):
     else:
         return 'O'
 
-
 def minimax_wrapper(state, max_player, depth):
 
-    choice = {'choice': None} # no nonlocal in python2.7; this is a workaround
+    choice = {'choice': None}  # no nonlocal in python2.7; this is a workaround
 
     def minimax(state, max_player, depth):
         if is_end_state(state) or depth == 0:  # base case
@@ -144,6 +146,7 @@ def minimax_wrapper(state, max_player, depth):
     minimax(state, max_player, depth)
 
     return choice['choice']
+
 
 _state = [['X', 'X', 'O'],
           ['O', None, None],
