@@ -3,7 +3,9 @@ import logging
 
 from configs import LOGGING_LEVELS
 from configs import MAX_PLAYER_SYM
+from configs import MAXIMIZING_SCORE
 from configs import MIN_PLAYER_SYM
+from configs import MINIMIZING_SCORE
 
 
 def get_player(max_player):
@@ -16,7 +18,7 @@ def get_player(max_player):
 
 def get_logger(name):
     """Gets a logger for the module.  Pass in __name__
-    for current module.
+    for current module.  LOGGING_LEVELS are defined in configs.py
     """
     for level in LOGGING_LEVELS:
         logging.basicConfig(level=level)
@@ -25,10 +27,10 @@ def get_logger(name):
 
 def get_pretty_game_state(game_state):
     """Outputs a nicely formatted game state"""
-    return prettify_game_state(game_state)
+    return _prettify_game_state(game_state)
 
 
-def prettify_game_state(game_state):
+def _prettify_game_state(game_state):
     """Returns a nicely formatted 2-d array for logging purposes"""
     result = ''
     rows = len(game_state)
@@ -57,7 +59,7 @@ def is_valid_move(state, move):
         return True
 
 
-def get_possible_states(state, player):  # pass in a player of 'X' or 'O'
+def get_possible_states(state, player):
     """Returns an array of all possible game states one move away"""
     rows, cols = len(state), len(state[0])
     possible_game_states = []
@@ -122,7 +124,7 @@ def _check_win_from_cell_in_dir(game_state, start_row, start_col, d_row, d_col, 
 
 
 def no_more_moves(game_state):
-    """Checks if there are any possible moves left"""
+    """Checks if there are any possible moves left."""
     rows, cols = len(game_state), len(game_state[0])
     for row in range(rows):
         for col in range(cols):
@@ -135,16 +137,20 @@ def is_end_state(game_state):
     """Checks if the given state is an end state.  An end state
     is defined as having 1) a winner or 2) no more available moves.
     """
-    if no_more_moves(game_state) or check_win(game_state, 'X') or check_win(game_state, 'O'):  # TODO: optimize me
+    if no_more_moves(game_state) or check_win(game_state, 'X') or check_win(game_state, 'O'):
         return True
     else:
+
         return False
 
 
 def get_score(game_state, max_player):  # TODO : make this cleaner
     """Gets the score of the given state based on the given player."""
-    player = 'X' if max_player else 'O'
-    score = 10 if max_player else -10
+    if max_player:
+        player, score = MAX_PLAYER_SYM, MAXIMIZING_SCORE
+    else:
+        player, score = MIN_PLAYER_SYM, MINIMIZING_SCORE
+
     if check_win(game_state, player):
         return score
     else:  # no one wins

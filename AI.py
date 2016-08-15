@@ -39,6 +39,6 @@ class AI(object):
                     min_score_index = scores.index(min(scores))
                     choice['choice'] = states[min_score_index]
                     return scores[min_score_index]
-
+    
         minimax(state, max_player, depth)
         return choice['choice']
