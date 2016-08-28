@@ -1,8 +1,8 @@
+from configs import MAX_PLAYER_SYM
 from utils import get_player
 from utils import get_possible_states
 from utils import get_score
 from utils import is_end_state
-from utils import MAX_PLAYER_SYM
 
 
 class AI(object):
@@ -12,7 +12,7 @@ class AI(object):
 
     def get_best_state(self, state, max_player, depth):
         """Serves as a wrapper for the core minimax algorithm.  The best move --
-        represented as a state -- is stored in choice['choice] since python 2.7 doesn't
+        represented as a state -- is stored in choice['choice'] since python 2.7 doesn't
         support nonlocal variables.
         """
         choice = {'choice': None}  # no nonlocal in python2.7; this is a workaround
