@@ -32,6 +32,9 @@ class Game(object):
         self._state = new_state
 
     def loop(self, first, player, ai):
+        """Runs the game loop.  Prompts the player and ai
+        to make moves.
+        """
         logger = self.logger
         is_user_turn = first
         while not is_end_state(self.state):
